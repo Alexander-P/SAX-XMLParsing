@@ -1,0 +1,26 @@
+<!ELEMENT takeout (offered-dishes,personnel,current-orders)>
+
+<!ELEMENT offered-dishes (dish+)>
+<!ELEMENT dish (#PCDATA)>
+<!ATTLIST dish id ID #REQUIRED>
+<!ATTLIST dish name CDATA #REQUIRED>
+<!ATTLIST dish vegetarian (true|false) #REQUIRED>
+
+<!ELEMENT personnel (person+)>
+<!ELEMENT person (name,transport?)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT transport (#PCDATA)>
+<!ATTLIST person id ID #REQUIRED>
+
+<!ELEMENT current-orders (order*)>
+<!ELEMENT order ((address|self-pickup),item+)>
+<!ATTLIST order order-id ID #REQUIRED>
+
+<!ELEMENT address (#PCDATA)>
+<!ATTLIST address deliveredBy IDREF #REQUIRED>
+<!ELEMENT self-pickup EMPTY>
+<!ATTLIST self-pickup client-name CDATA #REQUIRED>
+
+<!ELEMENT item EMPTY>
+<!ATTLIST item dish IDREF #REQUIRED>
+<!ATTLIST item price CDATA #REQUIRED>

@@ -57,7 +57,9 @@ public class SAXParsing {
 
   public static void takeoutExampleUse() {
     try {
+      // Configure SAX parser with DTD validation
       SAXParserFactory factory = SAXParserFactory.newInstance();
+      factory.setValidating(true);
       SAXParser saxParser = factory.newSAXParser();
       File inputFile = new File(TAKEOUT_XML);
 
