@@ -16,6 +16,8 @@ public class SAXParsing {
     basicExampleUse();
     System.out.println();
     takeoutExampleUse();
+    System.out.println();
+    TakeoutHTMLGenerator.generateTakeoutHTML();
   }
 
   public static void basicExampleUse() {
