@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE takeout SYSTEM "takeout.dtd">
+<takeout>
+    <offered-dishes>
+        <dish id="d1" name="Wiener Schnitzel" vegetarian="false">A traditional Austrian dish made with breaded veal cutlet.</dish>
+        <dish id="d2" name="Käsespätzle" vegetarian="true">A hearty cheese noodle dish, popular in Austrian cuisine.</dish>
+        <dish id="d3" name="Tafelspitz" vegetarian="false">Boiled beef served with horseradish, a classic Viennese dish.</dish>
+        <dish id="d4" name="Apfelstrudel" vegetarian="true">An Austrian dessert made with apples and pastry.</dish>
+    </offered-dishes>
+
+    <personnel>
+        <person id="p1">
+            <name>Hans Müller</name>
+            <transport>Car</transport>
+        </person>
+        <person id="p2">
+            <name>Anna Schmidt</name>
+            <transport>Bicycle</transport>
+        </person>
+        <person id="p3">
+            <name>Karl Bauer</name>
+        </person>
+    </personnel>
+
+    <current-orders>
+        <order order-id="o1">
+            <address deliveredBy="p1">Schönbrunn Palace, Vienna</address>
+            <item dish="d1" price="15.50"/>
+            <item dish="d4" price="5.00"/>
+        </order>
+        <order order-id="o2">
+            <self-pickup client-name="Max Mustermann"/>
+            <item dish="d2" price="12.00"/>
+        </order>
+        <order order-id="o3">
+            <address deliveredBy="p2">Belvedere Palace, Vienna</address>
+            <item dish="d3" price="18.00"/>
+        </order>
+        <order order-id="o4">
+            <self-pickup client-name="Test Person"/>
+            <item dish="d1" price="15.50"/>
+            <item dish="d2" price="12.00"/>
+            <item dish="d4" price="5.00"/>
+        </order>
+    </current-orders>
+</takeout>
