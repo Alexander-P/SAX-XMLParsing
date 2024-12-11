@@ -7,7 +7,14 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 
 public class SAXParsing {
+
+  private static final String COURSE_XML = "course.xml";
+
   public static void main(String[] args) {
+    basicExampleUse();
+  }
+
+  public static void basicExampleUse() {
     try {
       // Create a SAXParserFactory instance
       SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -16,7 +23,7 @@ public class SAXParsing {
       SAXParser saxParser = factory.newSAXParser();
 
       // Specify the XML file to parse
-      File inputFile = new File("course.xml");
+      File inputFile = new File(COURSE_XML);
 
       // Define the handler
       DefaultHandler handler = new DefaultHandler() {
