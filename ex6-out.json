@@ -1,1 +1,9 @@
-{"menuElementCount": 4}
+{
+    "restaurantName": "Bergblick",
+    "openDaysCount": 5,
+    "averageDishPrice": 12.75,
+    "mostExpensiveDish": 18,
+    "longestDay": "Monday",
+    "menuElementCount": 4,
+    "cheapestDish": 7.5
+}
