@@ -24,6 +24,7 @@ public class TakeoutHTMLGenerator {
       htmlWriter.write("<html><head><title>Takeout Menu and Orders</title></head><body>");
 
       Map<String, String> dishMap = new HashMap<>(); // Map to store dish ID and names
+      Map<String, String> delivererMap = new HashMap<>(); // Map to store deliverer ID and names
 
       DefaultHandler handler = new DefaultHandler() {
         private StringBuilder currentValue = new StringBuilder();
@@ -49,6 +50,9 @@ public class TakeoutHTMLGenerator {
             } catch (IOException e) {
               throw new SAXException(e);
             }
+          } else if (qName.equals("person")) {
+            String personId = attributes.getValue("id");
+            String personName = null;
           } else if (qName.equals("current-orders")) {
             inOrders = true;
             try {
@@ -67,6 +71,20 @@ public class TakeoutHTMLGenerator {
             String dishName = dishMap.getOrDefault(dishId, "Unknown Dish");
             try {
               htmlWriter.write("<li>Dish: " + dishName + ", Price: " + attributes.getValue("price") + "</li>");
+            } catch (IOException e) {
+              throw new SAXException(e);
+            }
+          } else if (qName.equals("address")) {
+            String deliveredBy = attributes.getValue("deliveredBy");
+            String delivererName = delivererMap.getOrDefault(deliveredBy, "Unknown Deliverer");
+            try {
+              htmlWriter.write("<li>Delivery Address: " + currentValue.toString() + " (Delivered By: " + delivererName + ")</li>");
+            } catch (IOException e) {
+              throw new SAXException(e);
+            }
+          } else if (qName.equals("self-pickup")) {
+            try {
+              htmlWriter.write("<li>Self-Pickup by: " + attributes.getValue("client-name") + "</li>");
             } catch (IOException e) {
               throw new SAXException(e);
             }
