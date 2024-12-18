@@ -18,6 +18,8 @@ public class SAXParsing {
     takeoutExampleUse();
     System.out.println();
     TakeoutHTMLGenerator.generateTakeoutHTML();
+    System.out.println();
+    RestaurantXMLProcessor.processRestaurantXML();
   }
 
   public static void basicExampleUse() {
