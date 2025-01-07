@@ -15,6 +15,11 @@ public class TakeoutHTMLGenerator {
 
   private static final String TAKEOUT_XML = "takeout.xml";
 
+  public static void main(String[] args) {
+    generateTakeoutHTML();
+    System.out.println("Takeout HTML file has been generated successfully.");
+  }
+
   public static void generateTakeoutHTML() {
     try {
       SAXParserFactory factory = SAXParserFactory.newInstance();

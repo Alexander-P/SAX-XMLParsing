@@ -20,6 +20,11 @@ public class RestaurantXMLProcessor {
   private static final String EX6_XML = "ex6.xml";
   private static final String EX6_OUT_JSON = "ex6-out.json";
 
+  public static void main(String[] args) {
+    processRestaurantXML();
+    System.out.println("Restaurant JSON file has been generated successfully.");
+  }
+
   public static void processRestaurantXML() {
     try {
       SAXParserFactory factory = SAXParserFactory.newInstance();
