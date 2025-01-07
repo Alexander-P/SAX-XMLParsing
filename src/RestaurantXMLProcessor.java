@@ -7,14 +7,13 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import org.json.JSONObject;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.json.JSONObject;
 
 public class RestaurantXMLProcessor {
 
@@ -26,16 +25,12 @@ public class RestaurantXMLProcessor {
       SAXParserFactory factory = SAXParserFactory.newInstance();
       SAXParser saxParser = factory.newSAXParser();
       File inputFile = new File(EX6_XML);
-
       DefaultHandler handler = new RestaurantHandler();
       saxParser.parse(inputFile, handler);
-
-    } catch (
-        Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }
-
 
   private static class RestaurantHandler extends DefaultHandler {
     private int menuElementCount = 0;
