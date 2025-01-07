@@ -7,7 +7,9 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import org.json.JSONObject;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,35 +50,49 @@ public class RestaurantXMLProcessor {
     private double mostExpensiveDish = Double.MIN_VALUE;
     private double cheapestDish = Double.MAX_VALUE;
     private final Map<String, String> dayOpeningHours = new HashMap<>();
+    private String currentDay = null;
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-      if (qName.equals("restaurant")) {
-        restaurantName = attributes.getValue("name");
-      } else if (qName.equals("dish")) {
-        menuElementCount++;
-        double price = Double.parseDouble(attributes.getValue("price"));
-        totalDishPrice += price;
-        dishCount++;
-        mostExpensiveDish = Math.max(mostExpensiveDish, price);
-        cheapestDish = Math.min(cheapestDish, price);
-      } else if (qName.equals("drink")) {
-        menuElementCount++;
-      } else if (qName.equals("city")) {
-        city = attributes.getValue("value");
-      } else if (qName.equals("country")) {
-        country = attributes.getValue("value");
-      } else if (qName.equals("day")) {
-        String dayName = attributes.getValue("name");
-        String closed = attributes.getValue("closed");
-        if (!"true".equals(closed)) {
-          openDaysCount++;
-          currentDay = dayName;
-        }
+      switch (qName) {
+        case "restaurant":
+          restaurantName = attributes.getValue("name");
+          break;
+        case "dish":
+          processDish(attributes);
+          break;
+        case "drink":
+          menuElementCount++;
+          break;
+        case "city":
+          city = attributes.getValue("value");
+          break;
+        case "country":
+          country = attributes.getValue("value");
+          break;
+        case "day":
+          processDay(attributes);
+          break;
       }
     }
 
-    private String currentDay = null;
+    private void processDish(Attributes attributes) {
+      menuElementCount++;
+      double price = Double.parseDouble(attributes.getValue("price"));
+      totalDishPrice += price;
+      dishCount++;
+      mostExpensiveDish = Math.max(mostExpensiveDish, price);
+      cheapestDish = Math.min(cheapestDish, price);
+    }
+
+    private void processDay(Attributes attributes) {
+      String dayName = attributes.getValue("name");
+      String closed = attributes.getValue("closed");
+      if (!"true".equals(closed)) {
+        openDaysCount++;
+        currentDay = dayName;
+      }
+    }
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
